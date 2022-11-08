@@ -4,7 +4,7 @@ connection: "thelook"
 include: "/views/**/*.view"
 
 datagroup: mtrmisathelook_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+ sql_trigger: SELECT MAX(id) FROM my_tablename;;
   max_cache_age: "1 hour"
 }
 

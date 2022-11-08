@@ -1,6 +1,9 @@
 view: order_items {
-  sql_table_name: demo_db.order_items ;;
+  sql_table_name: demo_db.order_items  ;;
   drill_fields: [id]
+  set: asknicely_drill_fields_set {
+    fields: [order_id]
+  }
 
   dimension: id {
     primary_key: yes
@@ -37,13 +40,19 @@ view: order_items {
       time,
       date,
       week,
+      week_of_year,
       month,
       quarter,
       year
     ]
     sql: ${TABLE}.returned_at ;;
   }
-
+  dimension: program_medical_progress__first_oymr_relative_weight_change {
+    type: number
+    sql: ROUND(${returned_week_of_year},2) ;;
+    group_label: "Program Medical Progress"
+    group_item_label: "First Oymr Relative Weight Change"
+  }
   dimension: sale_price {
     type: number
     sql: ${TABLE}.sale_price ;;
@@ -53,4 +62,24 @@ view: order_items {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
   }
+  measure: total_nps_responses {
+    hidden: yes
+    type: count
+    filters: [sale_price: ">=0,NOT NULL", returned_date: "NOT NULL"]
+  }
+  measure: promoters_count {
+    description: "Number of NPS scores equal to 9 or 10"
+    view_label: "Survey Questions"
+    group_label: "NPS"
+    type: count
+    filters: [sale_price: ">=9,NOT NULL", returned_date: "NOT NULL"]
+  }
+  measure: detractors_count {
+    description: "Number of NPS scores less 6"
+    view_label: "Survey Questions"
+    group_label: "NPS"
+    type: count
+    filters: [sale_price: "<=6 AND >=0,NOT NULL", returned_date: "NOT NULL"]
+  }
+
 }
