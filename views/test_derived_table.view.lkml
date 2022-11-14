@@ -1,6 +1,6 @@
 view: test_derived_table {
   derived_table: {
-    indexes: ["user.id"]
+    indexes: ["users.id"]
     sql:
     SELECT
       users.id  AS `users_id`,
