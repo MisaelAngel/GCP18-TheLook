@@ -4,13 +4,15 @@ connection: "thelook"
 include: "/views/**/*.view"
 
 datagroup: mtrmisathelook_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  sql_trigger: SELECT CURDATE();;
+  max_cache_age: "23 hours"
 }
 
 persist_with: mtrmisathelook_default_datagroup
 
 #explore: div_stylebackgroundimage_urldatatexthtmlimgsrc1 {}
+
+explore: test_derived_table {}
 
 explore: imgsrc1onerroralert2 {}
 
@@ -218,7 +220,15 @@ explore: ten_million_orders {
 
 explore: test {}
 
-explore: users {}
+explore: users {
+  # access_filter: {
+  #   field: users.id
+  #   user_attribute: name
+  # }
+  always_filter: {
+    filters: [users.created_year: "2017"]
+  }
+}
 
 explore: user_data {
   join: users {
