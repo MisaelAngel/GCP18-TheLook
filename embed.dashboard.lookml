@@ -15,7 +15,7 @@
       fields: [order_items.id, order_items.sale_price]
       limit: 500
       dynamic_fields:
-    - category: table_calculation
+      - category: table_calculation
       expression: "${order_items.sale_price}*2"
       label: tc
       value_format:
@@ -50,7 +50,7 @@
       fields: [order_items.id, order_items.sale_price]
       limit: 500
       dynamic_fields:
-    - category: table_calculation
+      - category: table_calculation
       expression: "${order_items.sale_price}*2"
       label: tc
       value_format:

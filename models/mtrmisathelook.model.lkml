@@ -2,6 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/*.dashboard.lookml"
 
 datagroup: mtrmisathelook_default_datagroup {
   sql_trigger: SELECT CURDATE();;
