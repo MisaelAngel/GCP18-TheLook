@@ -56,8 +56,9 @@ view: order_items {
 
   measure: total_sale_price {
     label: "Total Sales"
-    type: sum
-    sql: ${sale_price} ;;
-    value_format_name: usd
+    type: number
+    sql: ${sale_price}/2*${sale_price} ;;
+    # value_format_name: usd
+    value_format: "000.0$"
   }
 }
