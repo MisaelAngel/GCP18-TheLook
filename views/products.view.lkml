@@ -8,6 +8,34 @@ view: products {
     sql: ${TABLE}.id ;;
   }
 
+  filter: category_filter {
+    type: string
+    suggest_explore: products
+    suggest_dimension: products.category
+  }
+
+  filter: brand_filter {
+    type: string
+    suggest_explore: products
+    suggest_dimension: products.brand
+  }
+
+
+  dimension: category_comparison {
+    type: string
+    sql:
+        {% condition category_filter %}
+        ${category}
+        {% endcondition %}
+        OR
+        {% condition brand_filter %}
+        ${brand}
+        {% endcondition %}
+      ;;
+  }
+
+
+
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
