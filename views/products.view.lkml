@@ -20,6 +20,12 @@ view: products {
     suggest_dimension: products.brand
   }
 
+  filter: inventory_items_id_filter {
+    type: string
+    suggest_explore: products
+    suggest_dimension: products.brand
+  }
+
 
   dimension: category_comparison {
     type: string
