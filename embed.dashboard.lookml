@@ -11,7 +11,7 @@
       title: Untitled Visualization
       model: mtrmisathelook
       explore: order_items
-      type: looker_grid
+      type: looker_column
       fields: [order_items.id, order_items.sale_price]
       limit: 500
       dynamic_fields:
