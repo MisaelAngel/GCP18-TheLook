@@ -34,6 +34,26 @@ view: products {
       ;;
   }
 
+  filter: users_first_name_filter {
+    type: string
+    suggest_explore: order_items
+    suggest_dimension: users.first_name
+  }
+
+  dimension: user_comparison {
+    type: string
+    sql:
+        {% condition users_first_name_filter %}
+        users.first_name
+        {% endcondition %}
+        OR
+        {% condition brand_filter%}
+        ${brand}
+        {% endcondition %}
+      ;;
+  }
+
+
 
 
   dimension: brand {
