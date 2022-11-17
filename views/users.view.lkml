@@ -72,7 +72,13 @@ view: users {
     type: string
     sql: ${TABLE}.state ;;
     map_layer_name: us_states
-    html: <a href="http://www.google.com/search?q={{rendered_value}} city" target="_blank">{{rendered_value}}</a> ;;
+    html: {% if value == "California" %}
+      <span style="color:darkgreen;">{{ rendered_value }}</span>
+    {% elsif value == "Texas" %}
+      <span style="color:goldenrod;">{{ rendered_value }}</span>
+    {% else %}
+      <span style="color:darkred;">{{ rendered_value }}</span>
+    {% endif %} ;;
   }
 
   dimension: zip {
