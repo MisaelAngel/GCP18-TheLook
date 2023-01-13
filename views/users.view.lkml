@@ -72,13 +72,10 @@ view: users {
     type: string
     sql: ${TABLE}.state ;;
     map_layer_name: us_states
-    html: {% if value == "California" %}
-      <span style="color:darkgreen;">{{ rendered_value }}</span>
-    {% elsif value == "Texas" %}
-      <span style="color:goldenrod;">{{ rendered_value }}</span>
-    {% else %}
-      <span style="color:darkred;">{{ rendered_value }}</span>
-    {% endif %} ;;
+    link: {
+      label: "Test"
+      url: "https://gcpl2218.cloud.looker.com/dashboards/3?State={{ value | url_encode}}&Created+Year="
+    }
   }
 
   dimension: zip {

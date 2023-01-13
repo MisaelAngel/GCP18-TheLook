@@ -112,7 +112,7 @@ explore: orders {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
-    fields: [state,age]
+    #fields: [state,age]
   }
 }
 
@@ -223,6 +223,7 @@ explore: ten_million_orders {
 explore: test {}
 
 explore: users {
+  sql_always_where: ${state} <> "California" AND ${state} <> "Texas" AND ${state} <> "Colorado" ;;
   # access_filter: {
   #   field: users.id
   #   user_attribute: name
